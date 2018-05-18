@@ -774,7 +774,29 @@ site-content {
 }
 
 .site-branding {
+	display: -ms-flexbox;
+	display: flex;
 	min-height: 65px;
+}
+
+.custom-logo-link {
+	margin-right: 1em;
+}
+
+.custom-logo-link img {
+	display: block;
+	height: 65px;
+	width: auto;
+}
+
+.site-branding__text {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	    flex-direction: column;
+	-ms-flex-pack: center;
+	    justify-content: center;
+	height: 65px;
 }
 
 .site-title {
