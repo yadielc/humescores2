@@ -1,4 +1,14 @@
 
+.header-image {
+   max-height: 60vh;
+   overflow: hidden;
+
+   img{
+      display: block;
+      width: 100vw;
+
+   }
+}
 .site-header {
 	position: relative;
 	padding: 1em;
@@ -39,4 +49,20 @@
 	font-size: .9em;
 	font-style: italic;
 	font-weight: 100;
+}
+
+@media screen and (min-width: $query_medium){
+   .site-header {
+     display: flex;
+     justify-content: space-between;
+   }
+
+   .site-branding{
+     width: 35%;
+   }
+
+   .site-navigation {
+     width: 55%;
+   }
+
 }

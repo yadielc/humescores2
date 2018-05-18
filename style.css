@@ -426,7 +426,7 @@ img {
 }
 
 figure {
-	margin: 1em 0;
+	margin: 0;
 	/* Extra wide images within figure tags don't overflow the content area. */
 }
 
@@ -749,6 +749,16 @@ site-content {
 /*--------------------------------------------------------------
 ## Header
 --------------------------------------------------------------*/
+.header-image {
+	max-height: 60vh;
+	overflow: hidden;
+}
+
+.header-image img {
+	display: block;
+	width: 100vw;
+}
+
 .site-header {
 	position: relative;
 	padding: 1em;
@@ -789,6 +799,21 @@ site-content {
 	font-size: .9em;
 	font-style: italic;
 	font-weight: 100;
+}
+
+@media screen and (min-width: 900px) {
+	.site-header {
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-pack: justify;
+		    justify-content: space-between;
+	}
+	.site-branding {
+		width: 35%;
+	}
+	.site-navigation {
+		width: 55%;
+	}
 }
 
 /*--------------------------------------------------------------
