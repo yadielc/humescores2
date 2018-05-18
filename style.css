@@ -1,8 +1,8 @@
 /*!
-Theme Name: Humescores2
-Theme URI: https://github.com/ysites/humescores
-Author: Yadiel Cabrera Alvarado
-Author URI: http://yadielcabrera.com
+Theme Name: Humescores
+Theme URI: https://github.com/mor10/humescores/
+Author: Morten Rand-Hendriksen
+Author URI: https://mor10.com/courses
 Description: A new theme for a new time. This theme showcases the best of WordPress and Underscores and is the project for the Building Themes From Scratch Using Underscores course at LinkedIn Learning and Lynda.com.
 Version: 1.0.0
 License: GNU General Public License v2 or later
@@ -270,8 +270,44 @@ textarea {
 	line-height: 1.5;
 }
 
+@media screen and (min-width: 700px) {
+	body,
+	button,
+	input,
+	select,
+	textarea {
+		font-size: 16px;
+		font-size: 1rem;
+	}
+}
+
 h1, h2, h3, h4, h5, h6 {
 	clear: both;
+	font-family: "Source Sans Pro", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+}
+
+h1 {
+	font-size: 3em;
+}
+
+h2 {
+	font-size: 2.6em;
+}
+
+h3 {
+	font-size: 2.2em;
+}
+
+h4 {
+	font-size: 2em;
+}
+
+h5 {
+	font-size: 1.8em;
+}
+
+h6 {
+	font-size: 1.6em;
 }
 
 p {
@@ -695,20 +731,66 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-# Widgets
+# Content
 --------------------------------------------------------------*/
-.widget {
-	margin: 0 0 1.5em;
-	/* Make sure select elements fit in widgets. */
+/*--------------------------------------------------------------
+## Global layouts
+--------------------------------------------------------------*/
+site-content {
+	padding: 1em;
 }
 
-.widget select {
-	max-width: 100%;
+@media screen and (min-width: 600px) {
+	site-content {
+		padding: 2em;
+	}
 }
 
 /*--------------------------------------------------------------
-# Content
+## Header
 --------------------------------------------------------------*/
+.site-header {
+	position: relative;
+	padding: 1em;
+	font-family: "Source Sans Pro", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+	color: #fff;
+	background-color: #002254;
+}
+
+@media screen and (min-width: 600px) {
+	.site-header {
+		padding: 1em 2em;
+	}
+}
+
+.site-branding {
+	min-height: 65px;
+}
+
+.site-title {
+	margin: 0;
+	padding: 0;
+	font-size: 1.6em;
+	font-weight: 900;
+	line-height: 1em;
+}
+
+.site-title a {
+	color: white;
+	text-decoration: none;
+}
+
+.site-title a:hover, .site-title a:focus {
+	text-decoration: underline;
+}
+
+.site-description {
+	margin: 0;
+	font-size: .9em;
+	font-style: italic;
+	font-weight: 100;
+}
+
 /*--------------------------------------------------------------
 ## Posts and pages
 --------------------------------------------------------------*/
@@ -750,6 +832,18 @@ a:hover, a:active {
 
 .bypostauthor {
 	display: block;
+}
+
+/*--------------------------------------------------------------
+# Widgets
+--------------------------------------------------------------*/
+.widget {
+	margin: 0 0 1.5em;
+	/* Make sure select elements fit in widgets. */
+}
+
+.widget select {
+	max-width: 100%;
 }
 
 /*--------------------------------------------------------------
@@ -858,4 +952,4 @@ object {
 	display: block;
 }
 
-/*# sourceMappingURL=../humescores/sass/maps/style.css.map */
+/*# sourceMappingURL=../humescores2/sass/maps/style.css.map */
