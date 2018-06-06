@@ -115,8 +115,6 @@ function humescores_categorized_blog() {
 	}
 }
 
-//
-
 /**
  * Flush out the transients used in humescores_categorized_blog.
  */
