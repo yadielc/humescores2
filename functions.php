@@ -45,6 +45,7 @@ function humescores_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
 		'primary' => esc_html__( 'Header', 'humescores' ),
+		'social' => esc_html__( 'Social Media Menu', 'humescores' ),
 	) );
 
 	/*
@@ -65,52 +66,44 @@ function humescores_setup() {
 		'default-image' => '',
 	) ) );
 
-	// Add theme support for custom logo
-	add_theme_support('custom-logo', array(
-      'width' => 90,
-			'height' => 90,
-			'flex-width' => true,
-
-
+	// Add theme support for Custom Logo
+	add_theme_support( 'custom-logo', array(
+		'width' => 90,
+		'height' => 90,
+		'flex-width' => true,
 	));
+
 }
 endif;
 add_action( 'after_setup_theme', 'humescores_setup' );
 
+
 /**
  * Register custom fonts.
  */
-function humescores2_fonts_url() {
+function humescores_fonts_url() {
 	$fonts_url = '';
 
-	/*
+	/**
 	 * Translators: If there are characters in your language that are not
-	 * supported by Sans Serif Pro, translate this to 'off'. Do not translate
+	 * supported by Source Sans Pro and PT Serif, translate this to 'off'. Do not translate
 	 * into your own language.
 	 */
-	$source_sans_pro = _x( 'on', 'Source Sans Serif font: on or off', 'humescores2' );
-
-	$pt_serif = _x( 'on', 'PT Serif font: on or off', 'humescores2' );
+	$source_sans_pro = _x( 'on', 'Source Sans Pro font: on or off', 'humescores' );
+	$pt_serif = _x( 'on', 'PT Serif font: on or off', 'humescores' );
 
 	$font_families = array();
 
-	if ( 'off' !== $source_sans_pro) {
-		$font_families[] = 'Source Sans Pro: 400, 400i, 700, 900';
-
+	if ( 'off' !== $source_sans_pro ) {
+		$font_families[] = 'Source Sans Pro:400,400i,700,900';
 	}
 
-	/*
-    If PT SERIF is on, then add to the array
-
-  */
-
-	if ( 'off' !== $pt_serif) {
-		$font_families[] = 'PT Serif: 400, 400i, 700, 700i';
-
+	if ( 'off' !== $pt_serif ) {
+		$font_families[] = 'PT Serif:400,400i,700,700i';
 	}
 
 
-	if ( in_array('on', array($source_sans_pro, $pt_serif)) ) {
+	if ( in_array( 'on', array($source_sans_pro, $pt_serif) ) ) {
 
 		$query_args = array(
 			'family' => urlencode( implode( '|', $font_families ) ),
@@ -132,8 +125,8 @@ function humescores2_fonts_url() {
  * @param string $relation_type  The relation type the URLs are printed.
  * @return array $urls           URLs to print for resource hints.
  */
-function humescores2_resource_hints( $urls, $relation_type ) {
-	if ( wp_style_is( 'humescores2-fonts', 'queue' ) && 'preconnect' === $relation_type ) {
+function humescores_resource_hints( $urls, $relation_type ) {
+	if ( wp_style_is( 'humescores-fonts', 'queue' ) && 'preconnect' === $relation_type ) {
 		$urls[] = array(
 			'href' => 'https://fonts.gstatic.com',
 			'crossorigin',
@@ -142,8 +135,7 @@ function humescores2_resource_hints( $urls, $relation_type ) {
 
 	return $urls;
 }
-add_filter( 'wp_resource_hints', 'humescores2_resource_hints', 10, 2 );
-
+add_filter( 'wp_resource_hints', 'humescores_resource_hints', 10, 2 );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -179,11 +171,16 @@ add_action( 'widgets_init', 'humescores_widgets_init' );
  * Enqueue scripts and styles.
  */
 function humescores_scripts() {
-	// Enqueue Google Fonts Source Sans Pro and sans-serif
-	wp_enqueue_style('humescores-fonts', humescores2_fonts_url());
+	// Enqueue Google Fonts: Source Sans Pro and PT Serif
+	wp_enqueue_style( 'humescores-fonts', humescores_fonts_url() );
+
 	wp_enqueue_style( 'humescores-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'humescores-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	wp_enqueue_script( 'humescores-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery'), '20151215', true );
+	wp_localize_script( 'humescores-navigation', 'humescoresScreenReaderText', array(
+		'expand' => __( 'Expand child menu', 'humescores'),
+		'collapse' => __( 'Collapse child menu', 'humescores'),
+	));
 
 	wp_enqueue_script( 'humescores-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
