@@ -98,7 +98,7 @@ function humescores_categorized_blog() {
 
 		set_transient( 'humescores_categories', $all_the_cool_cats );
 	}
-
+//
 	if ( $all_the_cool_cats > 1 ) {
 		// This blog has more than 1 category so humescores_categorized_blog should return true.
 		return true;
