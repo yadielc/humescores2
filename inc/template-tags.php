@@ -44,13 +44,8 @@ if ( ! function_exists( 'humescores_entry_footer' ) ) :
  * Prints HTML with meta information for the categories, tags and comments.
  */
 function humescores_entry_footer() {
-	// Hide category and tag text for pages.
+	// Hide tag text for pages.
 	if ( 'post' === get_post_type() ) {
-		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( esc_html__( ', ', 'humescores' ) );
-		if ( $categories_list && humescores_categorized_blog() ) {
-			printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'humescores' ) . '</span>', $categories_list ); // WPCS: XSS OK.
-		}
 
 		/* translators: used between list items, there is a space after the comma */
 		$tags_list = get_the_tag_list( '', esc_html__( ', ', 'humescores' ) );
@@ -79,6 +74,18 @@ function humescores_entry_footer() {
 endif;
 
 /**
+ * Display category list
+ */
+
+function humescores_the_category_list() {
+	/* translators: used between list items, there is a space after the comma */
+	$categories_list = get_the_category_list( esc_html__( ', ', 'humescores' ) );
+	if ( $categories_list && humescores_categorized_blog() ) {
+		printf( '<span class="cat-links">' . esc_html__( '%1$s', 'humescores' ) . '</span>', $categories_list ); // WPCS: XSS OK.
+	}
+}
+
+/**
  * Returns true if a blog has more than 1 category.
  *
  * @return bool
@@ -98,7 +105,7 @@ function humescores_categorized_blog() {
 
 		set_transient( 'humescores_categories', $all_the_cool_cats );
 	}
-//
+
 	if ( $all_the_cool_cats > 1 ) {
 		// This blog has more than 1 category so humescores_categorized_blog should return true.
 		return true;
@@ -107,6 +114,8 @@ function humescores_categorized_blog() {
 		return false;
 	}
 }
+
+//
 
 /**
  * Flush out the transients used in humescores_categorized_blog.
